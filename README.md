@@ -1,5 +1,26 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Install
+`yarn install`
+
+`yarn start`
+
+### Change End Point
+
+In src/index.js replace the uri with your endpoint:
+
+`const client = new ApolloClient({
+    uri: "http://your.endpoint/graphql"
+});`
+
+### Project structure
+
+containers = Page Components to route to
+
+components = Smaller Components that build the pages
+
+Routes are defined in containers/App.js
+
 ## Available Scripts
 
 In the project directory, you can run:
