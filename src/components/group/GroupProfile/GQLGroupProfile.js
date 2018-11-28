@@ -10,11 +10,31 @@ import GroupHeader from './layout/GroupHeader';
 import { Row, Col, } from 'reactstrap';
 
 const queryGroupInfo = gql`
-    query groups($id: ID!) {
-        groups(id: $id) {
+    query GetGroupById($id: ID!) {
+        group(id: $id) {
             id
             name
             description
+            members {
+                id
+                username
+            }
+            posts {
+                id
+                user {
+                    id
+                    username
+                }
+                group {
+                    id
+                    name
+                }
+                createdAt
+                likedBy {
+                    username
+                }
+                content
+            }
         }
     }
 `
@@ -26,19 +46,18 @@ class GQLGroupProfile extends Component {
                 {({ loading, error, data }) => {
                     if (loading) return null;
                     if (error) return `Error!: ${error}`;
-                
                     return (
                     <div>
-                        <GroupHeader id={data.groups[0].id} name={data.groups[0].name} />
+                        <GroupHeader id={data.group.id} name={data.group.name} />
                         <Row>
                             <Col sm="2">
                                 <GroupNav id={this.props.id} />
                             </Col>
                             <Col sm="7">
-                                <GroupPost id={this.props.id} />
+                                <GroupPost id={this.props.id} members={data.group.members} posts={data.group.posts}/>
                             </Col>
                             <Col sm="3">
-                                <GroupSidebar id={this.props.id} description={data.groups[0].description} />
+                                <GroupSidebar id={this.props.id} description={data.group.description} />
                             </Col>
                         </Row>
                     </div>
