@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 
-import FeedCard from '../core/card/FeedCard';
-
 class List extends Component {
     render() {
         return (
             <div>
-                Map these
-                <br />
-                <FeedCard />
+                To implement
             </div>
         );
     }

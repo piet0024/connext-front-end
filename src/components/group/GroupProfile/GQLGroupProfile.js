@@ -34,6 +34,15 @@ const queryGroupInfo = gql`
                     username
                 }
                 content
+                comments {
+                    id
+                    createdAt
+                    user {
+                        id
+                        username
+                    }
+                    content
+                }
             }
         }
     }
