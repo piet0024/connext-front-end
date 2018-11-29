@@ -45,11 +45,22 @@ class GroupPost extends Component {
             dropdownOpen: false,
             currentUser: {
                 id: "",
-                username: "NO USER SELECTED"
+                username: "NO MEMBERS IN GROUP"
             },
         };
         this.onEditorChange = (editorState) => this.setState({editorState});
         this.handleKeyCommand = this.handleKeyCommand.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.members.length > 1) {
+            this.setState({
+                currentUser: {
+                    id: this.props.members[0].id,
+                    username: this.props.members[0].username
+                }
+            });
+        }
     }
 
     toggle() {

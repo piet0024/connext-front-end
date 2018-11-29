@@ -1,0 +1,11 @@
+div.DraftEditor-root {
+    background-color: #ffffff;
+    width: 80%;
+    margin:10px;
+    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.5);
+    height:100px;
+    overflow-y: none;
+    padding:2px;
+    font-size: 18px;
+    font-family: 'calibri', sans-serif;
+  }
