@@ -55,7 +55,7 @@ class FeedCard extends Component {
             return null;
         });
         return(
-            <div>
+            <div className="mb-2">
                 <Card>
                     <CardBody>
                         <div className="mb-3">
@@ -70,10 +70,6 @@ class FeedCard extends Component {
                         <CardText>
                             {this.props.data.content}
                         </CardText>
-                    </CardBody>
-                    <CardFooter>
-                        <Row>
-                            <Col md="3">
                                 {(!likes.includes(this.props.currentUser.username) || (this.state.liked === "true" && this.state.status === "LIKE")) ?  
                                     <Mutation mutation={LIKE_POST}>
                                         {(LikePost, { data }) => (
@@ -83,7 +79,8 @@ class FeedCard extends Component {
                                                     username: this.props.currentUser.username
                                                 } });
                                                 this.setState({liked: "true", status: "UNLIKE"});
-                                            }}>LIKE</Button>
+                                            }}
+                                            color="link">Like</Button>
                                         )}
                                     </Mutation>
                                     :
@@ -95,42 +92,37 @@ class FeedCard extends Component {
                                                     username: this.props.currentUser.username
                                                 } });
                                                 this.setState({liked: "true", status: "LIKE"});
-                                            }}>UNLIKE</Button>
+                                            }}
+                                            color="link">Unlike</Button>
                                         )}
                                     </Mutation> 
                                 }
-                            </Col>
-                            <Col md="3">
-                                likedBy: 
-                                {this.props.data.likedBy.map(user => (
-                                        user.username + ","
-                                    )
-                                )}
-                            </Col>
-                            <Col md="6">
-                                <Button onClick={() => this.toggle(this)}>Comment</Button>
-                            </Col>
-                        </Row>
-                    </CardFooter>
-                </Card>
-                {
+                                <span>({this.props.data.likedBy.length})</span>
+                            <ul class="list-unstyled border-top">
+                            {
                     this.props.data.comments.map(comment => (
-                        <Card style={{padding: "25px", marginLeft: "25px", marginRight: "25px"}}>
-                            <CardBody>
-                                <CardTitle>
-                                    <CardLink href="#">{comment.user.username}</CardLink>
-                                </CardTitle>
-                                <CardSubtitle className="text-muted">
-                                    {comment.createdAt}
-                                </CardSubtitle>
-                            </CardBody>
-                            <CardText>
-                                {comment.content}
-                            </CardText>
-                        </Card>
+                        <li className="media media-comment pl-5">
+                            <div className="media-body">
+                                <div className="media-heading">
+                                    <a href="#" className="mr-2">{comment.user.username}</a>
+                                    <small className="text-muted">
+                                        {comment.createdAt}
+                                    </small>
+                                </div>
+                                <div>
+                                   {comment.content} 
+                                </div>
+                            </div>
+                        </li>
                     ))
                 }
+                            </ul>
+                <div>
+                    <Button color="link" onClick={() => this.toggle(this)}>Comment</Button>    
+                </div>                            
                 {(this.state.commentToggle) ? <CommentEditor this={this} toggle={this.toggle} currentUser={this.props.currentUser} post={this.props.data} /> : null}
+                </CardBody>
+                </Card>
             </div>
             
         );

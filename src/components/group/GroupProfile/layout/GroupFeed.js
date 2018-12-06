@@ -8,7 +8,7 @@ class GroupFeed extends Component {
             <div>
                 {
                     this.props.posts.map(post => (
-                        <FeedCard key={post.id} data={post} currentUser={this.props.currentUser}/>
+                        <FeedCard key={post.id} data={post} currentUser={this.props.currentUser} />
                     ))
                 }
                 
