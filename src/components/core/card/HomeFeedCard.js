@@ -7,7 +7,7 @@ class HomeFeedCard extends Component {
             <div className="mb-2">
                 <Card>
                     <div>
-                        <CardHeader className="mb-3">
+                        <CardHeader>
                             <CardTitle>
                                 <CardLink href="#">{this.props.data.user.username}</CardLink> >
                                 <CardLink href={"/g/" + this.props.data.group.id} className="ml-1">{this.props.data.group.name}</CardLink>
