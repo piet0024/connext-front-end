@@ -11,7 +11,8 @@ const queryGroupPosts = gql`
     query GetGroupById($id: ID!) {
         group(id: $id) {
             id
-            posts {
+            createdAt
+            posts(orderBy: createdAt_DESC) {
                 id
                 user {
                     id
@@ -155,7 +156,8 @@ class GroupPost extends Component {
                                     content: this.state.editorState.getCurrentContent().getPlainText(),
                                  } });
                                  this.setState({editorState: EditorState.createEmpty()});
-                            }}>submit</Button>
+                            }}
+                            className="mt-2">submit</Button>
                         )}
                     </Mutation>
                     </CardBody>

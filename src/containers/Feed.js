@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Card, CardBody } from 'reactstrap';
 import List from '../components/feed/List';
 
 class Feed extends Component {
@@ -10,7 +10,16 @@ class Feed extends Component {
                     <List />
                 </Col>
                 <Col sm="4">
-                    Sidebar Here
+                    <Card className="mb-2">
+                        <CardBody>
+                            Imagine some nice sidebar content here. I can see it now! Tutorials! Recommendations! Trending Topics! Anything but advertisments please! 
+                        </CardBody>
+                    </Card>
+                    <Card>
+                        <CardBody>
+                            Imagine some nice sidebar content here
+                        </CardBody>
+                    </Card>
                 </Col>
             </Row>
         )

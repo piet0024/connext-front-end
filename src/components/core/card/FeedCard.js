@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardTitle, CardSubtitle, CardText, CardFooter, CardLink, Button, Row, Col } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardSubtitle, CardText, CardFooter, CardLink, Button, Row, Col, CardHeader } from 'reactstrap';
 import PropTypes from 'prop-types';
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
@@ -57,16 +57,17 @@ class FeedCard extends Component {
         return(
             <div className="mb-2">
                 <Card>
-                    <CardBody>
-                        <div className="mb-3">
+                    <div>
+                        <CardHeader className="mb-3">
                             <CardTitle>
                                 <CardLink href="#">{this.props.data.user.username}</CardLink> >
-                                <CardLink href="#" className="ml-1">{this.props.data.group.name}</CardLink>
+                                <CardLink href={"/g/" + this.props.data.group.id} className="ml-1">{this.props.data.group.name}</CardLink>
                             </CardTitle>
                             <CardSubtitle className="text-muted">
                                 {this.props.data.createdAt}
                             </CardSubtitle>
-                        </div>
+                        </CardHeader>
+                        <CardBody>
                         <CardText>
                             {this.props.data.content}
                         </CardText>
@@ -98,7 +99,10 @@ class FeedCard extends Component {
                                     </Mutation> 
                                 }
                                 <span>({this.props.data.likedBy.length})</span>
-                            <ul class="list-unstyled border-top">
+
+                                </CardBody>
+                            <CardFooter>
+                            <ul class="list-unstyled">
                             {
                     this.props.data.comments.map(comment => (
                         <li className="media media-comment pl-5">
@@ -121,7 +125,8 @@ class FeedCard extends Component {
                     <Button color="link" onClick={() => this.toggle(this)}>Comment</Button>    
                 </div>                            
                 {(this.state.commentToggle) ? <CommentEditor this={this} toggle={this.toggle} currentUser={this.props.currentUser} post={this.props.data} /> : null}
-                </CardBody>
+                </CardFooter>
+                </div>
                 </Card>
             </div>
             

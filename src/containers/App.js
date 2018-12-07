@@ -12,8 +12,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Navbar color="light" primary>
-            <NavbarBrand href="/">Connext</NavbarBrand>
+          <Navbar color="dark" className="bg-primary-grad fixed-top">
+            <NavbarBrand href="/">Connext(Proof of Concept)</NavbarBrand>
             <Nav>
               <NavItem>
                 <NavLink href="/">Feed</NavLink>
@@ -21,15 +21,9 @@ class App extends Component {
               <NavItem>
                 <NavLink href="/g/mine">Groups List</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="/g/1">Group ID 1</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/g/1/file">Group ID 1 Files</NavLink>
-              </NavItem>
             </Nav>
           </Navbar>
-          <Container>
+          <Container style={{marginTop: '65px'}}>
             <Switch>
               <Route exact path="/" component={Feed} />
               <Route path="/g/mine" component={GroupList} />

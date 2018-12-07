@@ -6,7 +6,6 @@ class GroupNav extends Component {
         return (
             <Card>
                 <CardBody>
-                    Map links to group settings
                     <Nav vertical>
                         <NavItem>
                             <NavLink href={"/g/" + this.props.id}>
@@ -21,6 +20,11 @@ class GroupNav extends Component {
                         <NavItem>
                             <NavLink href={"/g/" + this.props.id + "/tool"}>
                                 Tool
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href={"/g/" + this.props.id + "/tool"}>
+                                Tool Ex
                             </NavLink>
                         </NavItem>
                     </Nav>
